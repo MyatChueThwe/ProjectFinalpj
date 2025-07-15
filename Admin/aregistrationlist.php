@@ -22,8 +22,14 @@ $sql = "SELECT bd.Bdetail_ID, u.User_Name, c.C_Name, bd.access
 $res = mysqli_query($conn, $sql);
 ?>
 
-<div class="container mt-5">
-    <h3 class="mb-4">User Course Access Control</h3>
+
+        <!-- Main Content -->
+        <div class="col-lg-10 px-4 py-3">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="mb-4">User Course Access Control</h3>
+            </div>
+            <div class="container mt-5">
+   
     <table class="table table-bordered">
         <thead>
             <tr>

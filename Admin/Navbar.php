@@ -35,7 +35,8 @@
                 <li class="list-group-item fst-italic"> <a href="./unit.php" class="text-decoration-none"><i class="bi bi-ui-checks me-2"></i>Unit</a></li>
                 <li class="list-group-item fst-italic"> <a href="./instruction.php" class="text-decoration-none"><i class="bi bi-ui-checks me-2"></i>Instructions</a></li>
                 <li class="list-group-item fst-italic"> <a href="./itemdetail.php" class="text-decoration-none"><i class="bi bi-ui-checks me-2"></i>itemdetail</a></li>
-                <li class="list-group-item fst-italic"> <a href="./aregistrationlist.php" class="text-decoration-none"><i class="bi bi-ui-checks me-2"></i>Booking list</a></li>
+                <li class="list-group-item fst-italic"> <a href="./aregistrationlist.php" class="text-decoration-none"><i class="bi bi-ui-checks me-2"></i>Accept Detail list</a></li>
+                <li class="list-group-item fst-italic"> <a href="./bookingdetaillist.php" class="text-decoration-none"><i class="bi bi-ui-checks me-2"></i>Booking Detail list</a></li>
                 <li class="list-group-item fst-italic"> <a href="../index.php" class="text-decoration-none"><i class="bi bi-box-arrow-right me-2"></i>Log out</a></li>
             </ul>
         </div>

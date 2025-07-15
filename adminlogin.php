@@ -1,3 +1,23 @@
+<?php
+session_start();
+include "./db.php";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM admin WHERE Admin_Name='$name' AND Pass='$password'";
+    $res = mysqli_query($conn, $sql);
+    if ($row = mysqli_fetch_assoc($res)) {
+        $_SESSION['admin_id'] = $row['Admin_ID'];
+        $_SESSION['admin_name'] = $row['Admin_Name'];
+        header("Location: Admin/admindb.php");
+        exit();
+    } else {
+        $error = "Invalid admin credentials!";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +48,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="./index.html">Home</a>
+              <a class="nav-link" aria-current="page" href="./index.php">Home</a>
             </li>
             
             <li class="nav-item dropdown">
@@ -56,18 +76,18 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./about.html">About Us</a>
+              <a class="nav-link" href="./about.php">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./userlogin.html">Log In</a>
+              <a class="nav-link" href="./userlogin.php">Log In</a>
             </li>
           </ul>
           <form class="d-flex mr-5" role="search">
-              <spam class="bg-white d-flex spam-search">
+              <span class="bg-white d-flex spam-search">
                 <input class="form-control me-2 text-dark" type="search" placeholder="search" aria-label="Search"/><i class="bi bi-search text-dark fs-4"></i>
-              </spam>
+              </span>
               </form>
-              <a href="./adminlogin.html"> <i class="bi bi-person-circle fs-2 text-black"></i></a>
+              <a href="./adminlogin.php"> <i class="bi bi-person-circle fs-2 text-black"></i></a>
         </div>
       </div>
     </nav>
@@ -86,24 +106,17 @@
         <div class="form-section">
             <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Admin Log in Form</h2>
             <hr class="mb-6 mx-auto w-24 border-blue-500 border-2 rounded-full">
+            <?php if (isset($error)) { echo "<div class='alert alert-danger'>$error</div>"; } ?>
 
-            <form>
+            <form method="POST" action="adminlogin.php">
                 <div class="mb-4">
                     <label for="name" class="form-label">Name :</label>
-                    <input type="text" class="form-control" id="name" placeholder="your name ......">
-                </div>
-                <div class="mb-4">
-                    <label for="email" class="form-label">Email :</label>
-                    <input type="email" class="form-control" id="email" placeholder="your email .....">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="your name ......" required>
                 </div>
                 <div class="mb-6">
                     <label for="password" class="form-label">Password :</label>
-                    <input type="password" class="form-control" id="password" placeholder="your password _">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="your password _" required>
                 </div>
-                <div class="mb-6">
-                  <label for="password" class="form-label">Password :</label>
-                  <input type="password" class="form-control" id="password" placeholder="your password _">
-              </div>
                 
                 <div class="d-flex justify-content-between align-items-center mt-4">
                     <button type="submit" class="btn btn-primary">Login</button>
@@ -113,9 +126,6 @@
         </div>
     </div>
 </section>
-
-
-
 
 <!-- footer section start -->
 <footer class="text-dark py-5 footer-bg mt-5">
@@ -158,10 +168,7 @@
     </div>
    </footer>
 
-
  <!-- footer section end -->
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>

@@ -1,7 +1,5 @@
 <?php
-
 include "db.php";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,12 +38,10 @@ include "db.php";
                 </a>
                 <ul class="dropdown-menu">
                  <?php
-
 $sql="SELECT * FROM course";
 $res = mysqli_query($conn,$sql);
 $i=1;
 while($data = mysqli_fetch_assoc($res)){
-
                 ?>
                  <li><a class="dropdown-item" href="Ccourse.php?id=<?php echo $data['C_ID'];?>"><?php echo $data['C_Name'];?></a></li>
                  <?php } ?>
@@ -55,18 +51,25 @@ while($data = mysqli_fetch_assoc($res)){
               <li class="nav-item">
                 <a class="nav-link" href="./about.php">About Us</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./userlogin.php">Log In</a>
-              </li>
+              <?php if (isset($_SESSION['user_name'])): ?>
+                <li class="nav-item">
+                  <span class="nav-link"> <?php echo htmlspecialchars($_SESSION['user_name']); ?></span>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="logout.php">Logout</a>
+                </li>
+              <?php else: ?>
+                <li class="nav-item">
+                  <a class="nav-link" href="./userlogin.php">Log In</a>
+                </li>
+              <?php endif; ?>
             </ul>
-            <form class="d-flex mr-5" role="search" method="post">
-                <spam class="bg-white d-flex spam-search">
-                  <input class="form-control me-2 text-dark" name="secrch_data" type="search" placeholder="Search" aria-label="Search"/>
-                  <button class="bi bi-search text-dark fs-4" type="submit" name="search" id="search-btn"></button>
-                </form>
-                </spam>
-                </form>
-                <a href="./adminlogin.php"> <i class="bi bi-person-circle fs-2 text-black"></i></a>
+            <form class="d-flex mr-5" role="search" method="get" action="index.php">
+                <span class="bg-white d-flex spam-search">
+                  <input class="form-control me-2 text-dark" name="search" type="search" placeholder="Search item or course..." aria-label="Search"/>
+                  <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search text-dark fs-4"></i></button>
+                </span>
+            </form>
           </div>
         </div>
       </nav>  

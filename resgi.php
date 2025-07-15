@@ -9,11 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $phone = $_POST['phone'];
     $courses = isset($_POST['courses']) ? $_POST['courses'] : [];
 
-
     $sql_user = "INSERT INTO user (User_Name, Email, Pass, Ph_Num) VALUES ('$name', '$email', '$password', '$phone')";
     mysqli_query($conn, $sql_user);
     $user_id = mysqli_insert_id($conn);
 
+    // Calculate Total Amount for booking table
     $total = 0;
     if (!empty($courses)) {
         $course_ids = implode(",", array_map('intval', $courses));
@@ -23,12 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $total = $row['total'];
     }
 
+    // Insert booking with total amount
     $sql_booking = "INSERT INTO booking (User_ID, B_Date, Total_amt) VALUES ('$user_id', NOW(), '$total')";
     mysqli_query($conn, $sql_booking);
     $booking_id = mysqli_insert_id($conn);
 
+    // Insert bookdatail with individual course fees
     foreach ($courses as $course_id) {
-        $sql_detail = "INSERT INTO bookdatail (B_ID, C_ID, B_amt) VALUES ('$booking_id', '$course_id', '$total')";
+        // Get this course's fee
+        $sql_fee = "SELECT C_Fees FROM course WHERE C_ID = '$course_id'";
+        $res_fee = mysqli_query($conn, $sql_fee);
+        $row_fee = mysqli_fetch_assoc($res_fee);
+        $course_fee = $row_fee['C_Fees'];
+
+        // Insert bookdatail with individual course fee
+        $sql_detail = "INSERT INTO bookdatail (B_ID, C_ID, B_amt) VALUES ('$booking_id', '$course_id', '$course_fee')";
         mysqli_query($conn, $sql_detail);
     }
 
@@ -39,12 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- navbar end -->
     <section class="login-section">
         <div class="login-container">
-            
+            <!-- Image Section (Left side on larger screens, top on smaller screens) -->
             <div class="image-section">
                 <img src="./registration form pg.jpg" alt="" width="100%" height="100%">
             </div>
     
-        
+            <!-- Form Section (Right side on larger screens, bottom on smaller screens) -->
             <div class="form-section">
                 <h2 class="text-3xl font-bold mb-6 text-center ">Booking Form</h2>
                 
@@ -87,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
 
-                  
+                    <!-- Total Amount Field (UI only, readonly) -->
                     <div class="mb-2">
                         <label for="total_ui" class="form-label">Total Amount :</label>
                         <input type="text" class="form-control" id="total_ui" value="0" readonly>
