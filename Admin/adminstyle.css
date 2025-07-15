@@ -1,0 +1,69 @@
+
+body {
+    background-image: linear-gradient(to bottom, #f2f9de, #e0d8bf, #ccb9a6, #b59b90, #9b7f7d);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; 
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+
+.navbar .bi {
+    color: #F2F9DE;
+}
+
+/* slidebar */
+
+.sidebar-col h6 {
+    padding-left: 1rem; 
+    margin-bottom: 1rem;
+    color: #F2F9DE;
+    font-size: 1rem; 
+    font-weight: 600;
+}
+
+.sidebar-nav-list .list-group-item {
+    background-color: black;
+    color: #F2F9DE;
+    border: none; 
+    padding: 0.75rem 1rem; 
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+    border-radius: 0.25rem; 
+}
+
+.sidebar-nav-list .list-group-item a {
+    color: #F2F9DE; 
+    text-decoration: none;
+    display: flex; 
+    align-items: center; 
+}
+
+.sidebar-nav-list .list-group-item:hover {
+    background-color: #F2F9DE;
+    color: black;
+}
+.sidebar-nav-list .list-group-item:hover a{
+    color: black;
+}
+
+.btn_add{
+    background-image: linear-gradient(to bottom, #f2f9de, #bfb8a5, #887c72, #504744, #1b1919);
+    border: black;
+    margin: 10px;
+}
+.btn_add:hover{
+    background-image: linear-gradient(to bottom, #f2f9de, #e9e1cb, #aa9b8e, #967d75, #4d4949);
+   
+}
+.style_photo{
+    font-size: small;
+}
+.style_photo img{
+  width: 100px;
+  height: 160px;
+}
+

@@ -1,0 +1,729 @@
+
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+/* nav section */
+
+.navbar{
+    background-color: #F2F9DE;
+}
+.navbar-nav{
+    margin-left: 30%;
+    width: 60%;
+}
+.spam-search{
+    padding: 7px;
+    border-radius: 30px;
+    margin-right: 10px;
+}
+.spam-search input{
+    border: none;
+}
+
+.snack-card {
+    border-top-left-radius: 40%;
+    border: 1px solid #dee2e6;
+    transition: transform 0.3s;
+}
+.snack-card:hover {
+    transform: scale(1.05);
+}
+.course-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 40%;
+}
+.course-container {
+    padding: 50px 0;
+}
+
+
+
+/* hero section */
+.carousel-item{
+    height: 100vh;
+}
+.carousel-caption{
+    margin-bottom: 200px;
+    z-index: 2;
+}
+.carousel-caption h5{
+    font-size: 45px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 25px; 
+    color: wheat;
+    
+}
+.carousel-caption p{
+    width: 60%;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.9;
+    color: wheat;
+}
+.carousel-inner::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+.carousel-btn{
+    background-image: linear-gradient(to bottom, #f2f9de, #bfb8a5, #887c72, #504744, #1b1919);
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+@media(max-width:767px){
+    .carousel-caption{
+       bottom: 100px;
+    }
+    .carousel-caption h5{
+       font-size: 10px;
+    }
+    .carousel-caption a{
+       padding: 7px 10px;
+    }
+   }
+
+   /* course sectiion */
+.bg-tip{
+    background-image: linear-gradient(to bottom, #7f807a, #979891, #b0b2a9, #c9cbc1, #e3e6da);
+    border-radius: 10px;
+}
+.bg-course{
+    background-color: #DCE9B6;
+    border-radius: 15px;
+    box-shadow: 0 0 7px #888787;
+
+}
+.bg-course0{
+    background-color: #AAB686;
+    border-radius: 15px;
+    box-shadow: 0 0 7px #888787;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Ancizar+Sans:ital,wght@0,100..1000;1,100..1000&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Dancing+Script:wght@400..700&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Italianno&family=Kadwa:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lobster&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300;1,300&family=Special+Gothic+Condensed+One&family=Tagesschrift&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+.course-p{
+    font-family: "Kadwa", serif;
+    font-weight: bold;
+}
+
+/* about section */
+
+.about{
+    background-color: #F2F9DE;
+    padding-top: 70px;
+}
+.abt-sec{
+    background-image: url(./Broken\ Hearts.jpg);
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 10px;
+}
+.abt-1 img{
+    border-top-left-radius: 20%;
+    border-top-right-radius: 20%;
+    border-bottom-left-radius: 20%;
+    
+}
+.abt-2 img{
+    border-bottom-left-radius: 20%;
+    border-bottom-right-radius: 20%;
+    border-top-right-radius: 20%;
+    
+    
+}
+.instruct-1 img{
+    border-radius: 20%;
+    box-shadow: 0 0 7px #5f5e5e;
+}
+.instruct-2 img{
+    border-radius: 20%;
+    box-shadow: 0 0 7px #5f5e5e;
+}
+.instruct-2 img:hover{
+    transform: scale(1.07);
+}
+.instruct-1 img:hover{
+    transform: scale(1.07);
+}
+.instru-name-1{
+    background-color: #748E5A;
+    color: whitesmoke;
+}
+.instru-name-2{
+    background-color: #F0AA7B;
+    color: whitesmoke;
+}
+
+/* snack section */
+
+.line-snack{
+    margin-left: 30%; 
+}
+.snack-card{
+    border-top-left-radius: 40% ; 
+    width: 20rem;
+    box-shadow: 0 0 7px #888787;
+}
+
+.snack-card img{
+    border-top-left-radius: 40% ;
+    border-bottom-right-radius: 40%;
+    height: 14rem;
+}
+.snack-btn{
+    margin-left: 60%;
+    padding: 7px;
+    background-color: black;
+    border-radius: 20px;
+}
+.snack-btn-text{
+    color: #EFE3E3;
+    background-color: black;
+    border-radius: 20px;
+    padding: 5px;
+}
+.snack-card:hover{
+    transform: scale(1.08);
+    background-color: black;
+    color:#EFE3E3; 
+}
+.snack-btn-text:hover{
+    background-color:#EFE3E3;
+    color: black;
+}
+
+.see-more-text{
+    color: wheat;
+    margin: 50px;
+}
+.see-more-btn{
+    margin-left: 45%;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #9abd76, #84a265, #6f8855, #5b6f45, #475736);
+    border: none;
+    margin-top: 50px;
+}
+
+.footer-bg{
+    background-image: url(./Monte\ Carlo.jpg);
+
+}
+
+
+/* snack instruction section */
+.background-image-container {
+    background-image: url('./မုန့်လုံးရေပေါ်.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recipe-card {
+    background-image: linear-gradient(to left, #3c3c39, #64634e, #908c64, #c1b679, #f6e28f);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 90%;
+    color: #292828;
+}
+/*  font size for title */
+.recipe-card .card-title {
+    font-size: 2rem; 
+    font-weight: bold;
+   
+}
+
+/* Font size for Instructions */
+.recipe-card .card-subtitle {
+    font-size: 1.2rem; 
+   
+}
+
+.recipe-card ol {
+    padding-left: 20px; 
+    line-height: 1.8; 
+    font-size: 1.1rem;
+}
+
+.recipe-card ol li {
+    margin-bottom: 10px; 
+}
+.background-image-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+.recipe-card{
+    z-index: 2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .recipe-card {
+        padding: 3px; 
+    }
+    .recipe-card .card-title {
+        font-size: 2rem;
+    }
+    .recipe-card .card-subtitle {
+        font-size: 1.2rem;
+    }
+    .recipe-card ol {
+        font-size: 1rem;
+    }
+}
+
+.info{
+    margin-left: 37%;
+}
+
+/* item2montlk */
+.bg-mlk-img-container {
+    background-image: url('./မုန့်လက်ကောက်.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-mlk-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+} 
+
+/* item3montph */
+.bg-mph-img-container {
+    background-image: url('./မုန့်ဖက်ထုတ်.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-mph-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* item4montlmy */
+.bg-montlmy-img-container{
+    background-image: url('./မုန့်လင်မယား.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-montlmy-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+
+/* item5tharky */
+.bg-tharky-img-container {
+    background-image: url('./သာခွေယိုင်.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-tharky-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* item6montkt */
+.bg-tky-img-container {
+    background-image: url('./မုန့်ကသ.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-tky-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* item7shm */
+
+.bg-shm-img-container{
+    background-image: url('./ရွှေထမင်း.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-shm-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* item8montptl */
+
+.bg-montptl-img-container{
+    background-image: url('./မုန့်ပျားသလက်.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-montptl-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* item9montthinechone */
+
+.bg-monttc-img-container{
+    background-image: url('./မုန့်သိုင်းခြုံ.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-monttc-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* item10mlsaung */
+
+.bg-mls-img-container{
+    background-image: url('./မုန့်လက်ဆောင်း.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-mls-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* item11montp */
+
+.bg-montp-img-container{
+    background-image: url('./မုန့်ပေါင်း.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-montp-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* item12targs */
+
+.bg-targs-img-container{
+    background-image: url('./သာကူစိမ်း.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-targs-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* item13monton */
+
+.bg-monton-img-container{
+    background-image: url('./မုန့်ဦးနှောက်.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-monton-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* item14pyaryh */
+
+.bg-pyaryh-img-container{
+    background-image: url('./ပျာရည်ထုတ်.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-pyaryh-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* item15koutnkh */
+
+.bg-koutnkh-img-container{
+    background-image: url('./ကောက်ညှင်းကျည်ထောက်.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-koutnkh-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* item16htantm */
+
+.bg-htantm-img-container{
+    background-image: url('./ထန်းသီးမုန့်.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-htantm-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* item17kconlk */
+
+.bg-kconlk-img-container{
+    background-image: url('./ကန်စွန်းဥနှမ်းလုံးကြော်.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-kconlk-img-container::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+/* Login Form Section */
+.login-section {
+    flex-grow: 1; /* Allows it to take up available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0;
+}
+.login-container {
+    background-color: #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 900px; /* Increased max-width for better display */
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Stack on small screens */
+}
+.image-section {
+    /* Placeholder image. Use a relevant image URL here. */
+    /* background-image: url('./user\ login\ pg.png'); */
+    background-size: cover;
+    background-position: center;
+    min-height: 250px; /* Height for image on small screens */
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+.form-section {
+    padding: 3rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.form-control {
+    border-radius: 0.75rem; /* Rounded input fields */
+    padding: 0.75rem 1rem;
+    border: 1px solid #ced4da;
+}
+.btn {
+    border-radius: 0.75rem; /* Rounded buttons */
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+}
+.btn-primary {
+    background-color: #0000;
+    border-color: #0000;
+    color: #FAF8D1;
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+   
+}
+.btn-outline-secondary {
+    border-color: #6c757d;
+    color: #6c757d;
+    transition: all 0.3s ease;
+}
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+.link-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    text-align: right;
+    margin-top: 1rem;
+}
+.link-text a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+.link-text a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments for login form */
+@media (min-width: 768px) {
+    .login-container {
+        flex-direction: row; /* Side-by-side on larger screens */
+    }
+    .image-section {
+        flex: 1; /* Take up half the space */
+        min-height: 500px; /* Height for image on larger screens */
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .form-section {
+        flex: 1; /* Take up half the space */
+    }
+}
