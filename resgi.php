@@ -1,7 +1,43 @@
 <?php
-
 include "./nav.php";
+include "db.php"; // DB connection
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // 1. Register User
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $phone = $_POST['phone'];
+    $total = $_POST['total'];
+    $courses = isset($_POST['courses']) ? $_POST['courses'] : [];
+
+    // Hash password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insert user
+    $sql_user = "INSERT INTO user (User_Name, Email, Pass, Ph_Num) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql_user);
+    $stmt->bind_param("ssss", $name, $email, $hashed_password, $phone);
+    $stmt->execute();
+    $user_id = $stmt->insert_id;
+
+    // Insert booking
+    $sql_booking = "INSERT INTO booking (User_ID, B_Date, Total_amt) VALUES (?, NOW(), ?)";
+    $stmt = $conn->prepare($sql_booking);
+    $stmt->bind_param("is", $user_id, $total);
+    $stmt->execute();
+    $booking_id = $stmt->insert_id;
+
+    // Insert bookdatail
+    $sql_detail = "INSERT INTO bookdatail (B_ID, C_ID, B_amt) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql_detail);
+    foreach ($courses as $course_id) {
+        $stmt->bind_param("iis", $booking_id, $course_id, $total);
+        $stmt->execute();
+    }
+
+    echo "<script>alert('Booking Successful!');window.location='index.php';</script>";
+}
 ?>
 
     <!-- navbar end -->
@@ -17,70 +53,50 @@ include "./nav.php";
                 <h2 class="text-3xl font-bold mb-6 text-center ">Booking Form</h2>
                 
     
-                <form>
+                <form method="POST" action="resgi.php">
                     <div class="mb-2">
                         <label for="name" class="form-label">Name :</label>
-                        <input type="text" class="form-control" id="name" placeholder="your name ......">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="your name ......" required>
                     </div>
                     <div class="mb-2">
                         <label for="email" class="form-label">Email :</label>
-                        <input type="email" class="form-control" id="email" placeholder="your email .....">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="your email ....." required>
                     </div>
                     <div class="mb-2">
                         <label for="password" class="form-label">Password :</label>
-                        <input type="password" class="form-control" id="password" placeholder="your password _">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="your password _" required>
                     </div>
                     
                     <div class="mb-2">
-                        <label for="password" class="form-label">Phone No :</label>
-                        <input type="password" class="form-control" id="phone" placeholder="your ph-num..">
+                        <label for="phone" class="form-label">Phone No :</label>
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder="your ph-num.." required>
                     </div>
                     <div class="mb-6">
                         <label class="form-label d-block">Choose Courses :</label>
                         <div class="row">
+                            <?php 
+                             $sql="select * from course";
+                             $res=mysqli_query($conn,$sql);
+                             while($row=mysqli_fetch_assoc($res)){
+                            ?>
                             <div class="col-md-4 col-6 mb-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="course1">
-                                    <label class="form-check-label" for="course1">
-                                        Course 1
+                                    <input class="form-check-input" type="checkbox" name="courses[]" value="<?php echo $row['C_ID']; ?>" id="course<?php echo $row['C_ID']; ?>">
+                                    <label class="form-check-label" for="course<?php echo $row['C_ID']; ?>">
+                                       <?php echo $row['C_Name'];?>
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-6 mb-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="course3">
-                                    <label class="form-check-label" for="course3">
-                                        Course 3
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-6 mb-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="course5">
-                                    <label class="form-check-label" for="course5">
-                                        Course 5
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-6 mb-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="course2">
-                                    <label class="form-check-label" for="course2">
-                                        Course 2
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-6 mb-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="course4">
-                                    <label class="form-check-label" for="course4">
-                                        Course 4
-                                    </label>
-                                </div>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
     
+                    <!-- Total Amount Field -->
+                <div class="mb-2">
+                    <label for="total" class="form-label">Total Amount :</label>
+                    <input type="text" class="form-control" name="total" id="total" placeholder="total amount..." required>
+                </div>
+                
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="button" class="btn btn-outline-secondary">Cancel</button>
