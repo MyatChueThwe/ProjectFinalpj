@@ -3,37 +3,37 @@ include "./nav.php";
 include "db.php"; // DB connection
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // 1. Register User
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $phone = $_POST['phone'];
-    $total = $_POST['total'];
     $courses = isset($_POST['courses']) ? $_POST['courses'] : [];
 
-    // Hash password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insert user
-    $sql_user = "INSERT INTO user (User_Name, Email, Pass, Ph_Num) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql_user);
-    $stmt->bind_param("ssss", $name, $email, $hashed_password, $phone);
-    $stmt->execute();
-    $user_id = $stmt->insert_id;
+    // 1. User Register
+    $sql_user = "INSERT INTO user (User_Name, Email, Pass, Ph_Num) VALUES ('$name', '$email', '$password', '$phone')";
+    mysqli_query($conn, $sql_user);
+    $user_id = mysqli_insert_id($conn);
 
-    // Insert booking
-    $sql_booking = "INSERT INTO booking (User_ID, B_Date, Total_amt) VALUES (?, NOW(), ?)";
-    $stmt = $conn->prepare($sql_booking);
-    $stmt->bind_param("is", $user_id, $total);
-    $stmt->execute();
-    $booking_id = $stmt->insert_id;
+    // 2. Calculate Total Amount
+    $total = 0;
+    if (!empty($courses)) {
+        $course_ids = implode(",", array_map('intval', $courses));
+        $sql_fees = "SELECT SUM(C_Fees) AS total FROM course WHERE C_ID IN ($course_ids)";
+        $result = mysqli_query($conn, $sql_fees);
+        $row = mysqli_fetch_assoc($result);
+        $total = $row['total'];
+    }
 
-    // Insert bookdatail
-    $sql_detail = "INSERT INTO bookdatail (B_ID, C_ID, B_amt) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql_detail);
+    // 3. Insert Booking
+    $sql_booking = "INSERT INTO booking (User_ID, B_Date, Total_amt) VALUES ('$user_id', NOW(), '$total')";
+    mysqli_query($conn, $sql_booking);
+    $booking_id = mysqli_insert_id($conn);
+
+    // 4. Insert Bookdatail
     foreach ($courses as $course_id) {
-        $stmt->bind_param("iis", $booking_id, $course_id, $total);
-        $stmt->execute();
+        $sql_detail = "INSERT INTO bookdatail (B_ID, C_ID, B_amt) VALUES ('$booking_id', '$course_id', '$total')";
+        mysqli_query($conn, $sql_detail);
     }
 
     echo "<script>alert('Booking Successful!');window.location='index.php';</script>";
@@ -81,21 +81,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             ?>
                             <div class="col-md-4 col-6 mb-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="courses[]" value="<?php echo $row['C_ID']; ?>" id="course<?php echo $row['C_ID']; ?>">
+                                    <input class="form-check-input course-checkbox" type="checkbox" name="courses[]" value="<?php echo $row['C_ID']; ?>" data-fee="<?php echo $row['C_Fees']; ?>" id="course<?php echo $row['C_ID']; ?>">
                                     <label class="form-check-label" for="course<?php echo $row['C_ID']; ?>">
-                                       <?php echo $row['C_Name'];?>
+                                       <?php echo $row['C_Name'];?> (<?php echo $row['C_Fees']; ?>)
                                     </label>
                                 </div>
                             </div>
                             <?php } ?>
                         </div>
                     </div>
-    
-                    <!-- Total Amount Field -->
-                <div class="mb-2">
-                    <label for="total" class="form-label">Total Amount :</label>
-                    <input type="text" class="form-control" name="total" id="total" placeholder="total amount..." required>
-                </div>
+
+                    <!-- Total Amount Field (UI only, readonly) -->
+                    <div class="mb-2">
+                        <label for="total_ui" class="form-label">Total Amount :</label>
+                        <input type="text" class="form-control" id="total_ui" value="0" readonly>
+                    </div>
                 
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -112,3 +112,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 include "./footer.php";
 
 ?>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const checkboxes = document.querySelectorAll('.course-checkbox');
+    const totalField = document.getElementById('total_ui');
+
+    function updateTotal() {
+        let total = 0;
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                total += parseFloat(cb.getAttribute('data-fee')) || 0;
+            }
+        });
+        totalField.value = total;
+    }
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', updateTotal);
+    });
+});
+</script>
